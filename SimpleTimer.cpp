@@ -64,10 +64,9 @@ void SimpleTimer::run() {
             // see http://arduino.cc/forum/index.php/topic,124048.msg932592.html#msg932592
 
             if (current_millis - prev_millis[i] >= delays[i]) {
-
+                
                 // update time
-                //prev_millis[i] = current_millis;
-                prev_millis[i] += delays[i];
+                prev_millis[i] += delays[i] * (unsigned long)((current_millis - prev_millis[i]) / delays[i]);
 
                 // check if the timer callback has to be executed
                 if (enabled[i]) {
